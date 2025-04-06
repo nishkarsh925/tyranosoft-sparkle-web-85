@@ -26,7 +26,7 @@ export default {
         foreground: 'hsl(var(--foreground))',
         tyrano: {
           blue: '#000000',
-          teal: '#0000FF',
+          teal: '#33C3F0',
           dark: '#0000FF',
           light: '#F5F7FA',
           accent: '#000000'
