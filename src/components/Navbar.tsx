@@ -47,9 +47,7 @@ export function Navbar() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex flex-col items-center">
           <Link to="/" className="mb-2">
-            <span className="font-heading text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-tyrano-teal to-tyrano-accent">
-              TyranoSoftwares
-            </span>
+           
           </Link>
           
           {/* Desktop Navigation (Dock-style) - Now centered */}
