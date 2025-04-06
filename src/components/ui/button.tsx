@@ -44,12 +44,14 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
     
     if (variant === "star") {
       return (
-        <StarBorder as={Comp} className={className} {...props} />
+        <StarBorder as={Comp} className={className} {...props}>
+          {children}
+        </StarBorder>
       )
     }
     
@@ -63,7 +65,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           className={cn(buttonVariants({ variant, size, className }))}
           ref={ref}
           {...props}
-        />
+        >
+          {children}
+        </Comp>
       </motion.div>
     )
   }
