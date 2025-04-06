@@ -1,6 +1,7 @@
 
 'use client';
 
+import * as React from 'react';
 import {
   motion,
   MotionValue,
@@ -10,16 +11,6 @@ import {
   type SpringOptions,
   AnimatePresence,
 } from 'framer-motion';
-import {
-  Children,
-  cloneElement,
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
 import { cn } from '@/lib/utils';
 
 const DOCK_HEIGHT = 128;
@@ -42,10 +33,14 @@ type DockItemProps = {
 type DockLabelProps = {
   className?: string;
   children: React.ReactNode;
+  isHovered?: MotionValue<number>;
+  width?: MotionValue<number>;
 };
 type DockIconProps = {
   className?: string;
   children: React.ReactNode;
+  isHovered?: MotionValue<number>;
+  width?: MotionValue<number>;
 };
 
 type DocContextType = {
@@ -59,14 +54,14 @@ type DockProviderProps = {
   value: DocContextType;
 };
 
-const DockContext = createContext<DocContextType | undefined>(undefined);
+const DockContext = React.createContext<DocContextType | undefined>(undefined);
 
 function DockProvider({ children, value }: DockProviderProps) {
   return <DockContext.Provider value={value}>{children}</DockContext.Provider>;
 }
 
 function useDock() {
-  const context = useContext(DockContext);
+  const context = React.useContext(DockContext);
   if (!context) {
     throw new Error('useDock must be used within an DockProvider');
   }
@@ -84,7 +79,7 @@ function Dock({
   const mouseX = useMotionValue(Infinity);
   const isHovered = useMotionValue(0);
 
-  const maxHeight = useMemo(() => {
+  const maxHeight = React.useMemo(() => {
     return Math.max(DOCK_HEIGHT, magnification + magnification / 2 + 4);
   }, [magnification]);
 
@@ -125,7 +120,7 @@ function Dock({
 }
 
 function DockItem({ children, className }: DockItemProps) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = React.useRef<HTMLDivElement>(null);
   const { distance, magnification, mouseX, spring } = useDock();
   const isHovered = useMotionValue(0);
 
@@ -143,9 +138,12 @@ function DockItem({ children, className }: DockItemProps) {
   const width = useSpring(widthTransform, spring);
 
   // Ensure the children are wrapped properly with isHovered and width
-  const wrappedChildren = Children.map(children, (child) => {
+  const wrappedChildren = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
-      return cloneElement(child, { width, isHovered });
+      return React.cloneElement(child, { 
+        isHovered, 
+        width 
+      } as React.HTMLAttributes<HTMLElement>);
     }
     return child;
   });
@@ -171,12 +169,10 @@ function DockItem({ children, className }: DockItemProps) {
   );
 }
 
-function DockLabel({ children, className, ...rest }: DockLabelProps) {
+function DockLabel({ children, className, isHovered, ...rest }: DockLabelProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const restProps = rest as Record<string, unknown>;
-  const isHovered = restProps['isHovered'] as MotionValue<number> | undefined;
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isHovered) {
       console.log("Warning: isHovered is undefined in DockLabel");
       return;
@@ -211,10 +207,7 @@ function DockLabel({ children, className, ...rest }: DockLabelProps) {
   );
 }
 
-function DockIcon({ children, className, ...rest }: DockIconProps) {
-  const restProps = rest as Record<string, unknown>;
-  const width = restProps['width'] as MotionValue<number> | undefined;
-
+function DockIcon({ children, className, width, ...rest }: DockIconProps) {
   const widthTransform = width ? useTransform(width, (val) => val / 2) : undefined;
 
   return (
