@@ -1,11 +1,46 @@
 
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { MenuIcon, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { MenuIcon, X, HomeIcon, Package, Component, Activity, Mail, LightbulbIcon, Users } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { Dock, DockIcon, DockItem, DockLabel } from '@/components/ui/dock';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  
+  const navItems = [
+    {
+      title: 'Home',
+      icon: <HomeIcon className='h-full w-full text-white' />,
+      href: '/',
+    },
+    {
+      title: 'Services',
+      icon: <Component className='h-full w-full text-white' />,
+      href: '/services',
+    },
+    {
+      title: 'About',
+      icon: <Users className='h-full w-full text-white' />,
+      href: '/about',
+    },
+    {
+      title: 'Products',
+      icon: <Package className='h-full w-full text-white' />,
+      href: '/products',
+    },
+    {
+      title: 'Pricing',
+      icon: <Activity className='h-full w-full text-white' />,
+      href: '/pricing',
+    },
+    {
+      title: 'Contact',
+      icon: <Mail className='h-full w-full text-white' />,
+      href: '/contact',
+    }
+  ];
   
   return (
     <nav className="w-full fixed top-0 z-50 bg-tyrano-dark/90 backdrop-blur-md border-b border-white/10">
@@ -16,17 +51,29 @@ export function Navbar() {
           </span>
         </Link>
         
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
-          <div className="flex gap-6">
-            <NavLink href="/services">Services</NavLink>
-            <NavLink href="/about">About</NavLink>
-            <NavLink href="/products">Products</NavLink>
-            <NavLink href="/pricing">Pricing</NavLink>
-          </div>
-          <Button className="bg-gradient-to-r from-tyrano-teal to-tyrano-accent hover:opacity-90 transition-opacity">
-            <Link to="/contact">Contact Us</Link>
-          </Button>
+        {/* Desktop Navigation (Dock-style) */}
+        <div className="hidden md:block">
+          <Dock className="items-end pb-1 bg-transparent">
+            {navItems.map((item, idx) => (
+              <DockItem
+                key={idx}
+                className={`aspect-square rounded-full ${location.pathname === item.href ? 'bg-tyrano-teal' : 'bg-tyrano-dark/80 hover:bg-tyrano-dark'}`}
+              >
+                <Link to={item.href}>
+                  <DockLabel>{item.title}</DockLabel>
+                  <DockIcon>{item.icon}</DockIcon>
+                </Link>
+              </DockItem>
+            ))}
+            <DockItem className="aspect-square rounded-full bg-gradient-to-r from-tyrano-teal to-tyrano-accent">
+              <Link to="/contact">
+                <DockLabel>Contact Us</DockLabel>
+                <DockIcon>
+                  <Mail className='h-full w-full text-white' />
+                </DockIcon>
+              </Link>
+            </DockItem>
+          </Dock>
         </div>
         
         {/* Mobile Menu Toggle */}
@@ -42,6 +89,7 @@ export function Navbar() {
       {isMenuOpen && (
         <div className="md:hidden bg-tyrano-dark/95 backdrop-blur-md">
           <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
+            <MobileNavLink href="/" onClick={() => setIsMenuOpen(false)}>Home</MobileNavLink>
             <MobileNavLink href="/services" onClick={() => setIsMenuOpen(false)}>Services</MobileNavLink>
             <MobileNavLink href="/about" onClick={() => setIsMenuOpen(false)}>About</MobileNavLink>
             <MobileNavLink href="/products" onClick={() => setIsMenuOpen(false)}>Products</MobileNavLink>
@@ -59,17 +107,6 @@ export function Navbar() {
 interface NavLinkProps {
   href: string;
   children: React.ReactNode;
-}
-
-function NavLink({ href, children }: NavLinkProps) {
-  return (
-    <Link 
-      to={href} 
-      className="text-white/80 hover:text-white transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-tyrano-teal after:transition-all"
-    >
-      {children}
-    </Link>
-  );
 }
 
 interface MobileNavLinkProps extends NavLinkProps {
