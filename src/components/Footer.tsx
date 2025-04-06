@@ -7,92 +7,87 @@ import { motion } from "framer-motion";
 
 export function Footer() {
   return (
-    <footer className="bg-tyrano-dark text-white">
-      <div className="container mx-auto px-4 py-12">
-        <motion.div 
-          className="relative h-[250px] mb-12 overflow-hidden rounded-lg"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-tyrano-dark/80 z-10 pointer-events-none"></div>
-          <motion.h3 
-            className="absolute top-4 left-4 text-xl font-heading font-bold mb-4 z-20"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400 }}
-          >
-            Global Presence
-          </motion.h3>
-          <Globe className="scale-110" />
-        </motion.div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          <div>
-            <Link to="/" className="flex items-center gap-2 mb-6">
-              <span className="font-heading text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-tyrano-teal to-tyrano-accent">
-                TyranoSoftwares
-              </span>
-            </Link>
-            <p className="text-white/70 mb-6">
-              Empowering businesses with innovative software solutions since 2018.
-            </p>
-            <div className="flex gap-4">
-              <SocialIcon icon="facebook" />
-              <SocialIcon icon="twitter" />
-              <SocialIcon icon="linkedin" />
-              <SocialIcon icon="github" />
+    <>
+      <motion.div 
+        className="relative h-[250px] bg-white overflow-hidden rounded-t-lg"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/20 z-10 pointer-events-none"></div>
+        <Globe className="scale-110" />
+      </motion.div>
+      
+      <footer className="bg-tyrano-dark text-white">
+        <div className="container mx-auto px-4 py-12">          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div>
+              <Link to="/" className="flex items-center gap-2 mb-6">
+                <span className="font-heading text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-tyrano-teal to-tyrano-accent">
+                  TyranoSoftwares
+                </span>
+              </Link>
+              <p className="text-white/70 mb-6">
+                Empowering businesses with innovative software solutions since 2018.
+              </p>
+              <div className="flex gap-4">
+                <SocialIcon icon="facebook" />
+                <SocialIcon icon="twitter" />
+                <SocialIcon icon="linkedin" />
+                <SocialIcon icon="github" />
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-heading font-bold mb-6">Quick Links</h3>
+              <ul className="space-y-3">
+                <FooterLink href="/#services">Services</FooterLink>
+                <FooterLink href="/#about">About Us</FooterLink>
+                <FooterLink href="/#products">Products</FooterLink>
+                <FooterLink href="/#testimonials">Testimonials</FooterLink>
+                <FooterLink href="/#contact">Contact Us</FooterLink>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-heading font-bold mb-6">Services</h3>
+              <ul className="space-y-3">
+                <FooterLink href="/services/software-development">Custom Software Development</FooterLink>
+                <FooterLink href="/services/cloud-solutions">Cloud Solutions</FooterLink>
+                <FooterLink href="/services/data-analytics">Data Analytics</FooterLink>
+                <FooterLink href="/services/ui-ux-design">UI/UX Design</FooterLink>
+                <FooterLink href="/services/ai-ml">AI & Machine Learning</FooterLink>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-heading font-bold mb-6">Newsletter</h3>
+              <p className="text-white/70 mb-4">
+                Subscribe to our newsletter to receive updates on the latest tech trends and company news.
+              </p>
+              <div className="flex gap-2">
+                <Input placeholder="Your email" className="bg-white/10 border-white/20 text-white" />
+                <Button className="bg-tyrano-teal text-tyrano-dark hover:bg-tyrano-teal/90">
+                  Subscribe
+                </Button>
+              </div>
             </div>
           </div>
           
-          <div>
-            <h3 className="text-lg font-heading font-bold mb-6">Quick Links</h3>
-            <ul className="space-y-3">
-              <FooterLink href="/#services">Services</FooterLink>
-              <FooterLink href="/#about">About Us</FooterLink>
-              <FooterLink href="/#products">Products</FooterLink>
-              <FooterLink href="/#testimonials">Testimonials</FooterLink>
-              <FooterLink href="/#contact">Contact Us</FooterLink>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-heading font-bold mb-6">Services</h3>
-            <ul className="space-y-3">
-              <FooterLink href="/services/software-development">Custom Software Development</FooterLink>
-              <FooterLink href="/services/cloud-solutions">Cloud Solutions</FooterLink>
-              <FooterLink href="/services/data-analytics">Data Analytics</FooterLink>
-              <FooterLink href="/services/ui-ux-design">UI/UX Design</FooterLink>
-              <FooterLink href="/services/ai-ml">AI & Machine Learning</FooterLink>
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-heading font-bold mb-6">Newsletter</h3>
-            <p className="text-white/70 mb-4">
-              Subscribe to our newsletter to receive updates on the latest tech trends and company news.
+          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-white/60 text-sm mb-4 md:mb-0">
+              &copy; {new Date().getFullYear()} TyranoSoftwares. All rights reserved.
             </p>
-            <div className="flex gap-2">
-              <Input placeholder="Your email" className="bg-white/10 border-white/20 text-white" />
-              <Button className="bg-tyrano-teal text-tyrano-dark hover:bg-tyrano-teal/90">
-                Subscribe
-              </Button>
+            <div className="flex gap-6">
+              <a href="/privacy-policy" className="text-white/60 text-sm hover:text-white">Privacy Policy</a>
+              <a href="/terms" className="text-white/60 text-sm hover:text-white">Terms of Service</a>
+              <a href="/cookie-policy" className="text-white/60 text-sm hover:text-white">Cookie Policy</a>
             </div>
           </div>
         </div>
-        
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-white/60 text-sm mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} TyranoSoftwares. All rights reserved.
-          </p>
-          <div className="flex gap-6">
-            <a href="/privacy-policy" className="text-white/60 text-sm hover:text-white">Privacy Policy</a>
-            <a href="/terms" className="text-white/60 text-sm hover:text-white">Terms of Service</a>
-            <a href="/cookie-policy" className="text-white/60 text-sm hover:text-white">Cookie Policy</a>
-          </div>
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 }
 
