@@ -126,9 +126,7 @@ function Dock({
 
 function DockItem({ children, className }: DockItemProps) {
   const ref = useRef<HTMLDivElement>(null);
-
   const { distance, magnification, mouseX, spring } = useDock();
-
   const isHovered = useMotionValue(0);
 
   const mouseDistance = useTransform(mouseX, (val) => {
@@ -143,6 +141,14 @@ function DockItem({ children, className }: DockItemProps) {
   );
 
   const width = useSpring(widthTransform, spring);
+
+  // Ensure the children are wrapped properly with isHovered and width
+  const wrappedChildren = Children.map(children, (child) => {
+    if (React.isValidElement(child)) {
+      return cloneElement(child, { width, isHovered });
+    }
+    return child;
+  });
 
   return (
     <motion.div
@@ -160,19 +166,22 @@ function DockItem({ children, className }: DockItemProps) {
       role='button'
       aria-haspopup='true'
     >
-      {Children.map(children, (child) =>
-        cloneElement(child as React.ReactElement, { width, isHovered })
-      )}
+      {wrappedChildren}
     </motion.div>
   );
 }
 
 function DockLabel({ children, className, ...rest }: DockLabelProps) {
-  const restProps = rest as Record<string, unknown>;
-  const isHovered = restProps['isHovered'] as MotionValue<number>;
   const [isVisible, setIsVisible] = useState(false);
+  const restProps = rest as Record<string, unknown>;
+  const isHovered = restProps['isHovered'] as MotionValue<number> | undefined;
 
   useEffect(() => {
+    if (!isHovered) {
+      console.log("Warning: isHovered is undefined in DockLabel");
+      return;
+    }
+
     const unsubscribe = isHovered.on('change', (latest) => {
       setIsVisible(latest === 1);
     });
@@ -204,13 +213,13 @@ function DockLabel({ children, className, ...rest }: DockLabelProps) {
 
 function DockIcon({ children, className, ...rest }: DockIconProps) {
   const restProps = rest as Record<string, unknown>;
-  const width = restProps['width'] as MotionValue<number>;
+  const width = restProps['width'] as MotionValue<number> | undefined;
 
-  const widthTransform = useTransform(width, (val) => val / 2);
+  const widthTransform = width ? useTransform(width, (val) => val / 2) : undefined;
 
   return (
     <motion.div
-      style={{ width: widthTransform }}
+      style={widthTransform ? { width: widthTransform } : undefined}
       className={cn('flex items-center justify-center', className)}
     >
       {children}

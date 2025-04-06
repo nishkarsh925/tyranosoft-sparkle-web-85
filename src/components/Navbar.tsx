@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { MenuIcon, X, HomeIcon, Package, Component, Activity, Mail, LightbulbIcon, Users } from "lucide-react";
+import { MenuIcon, X, HomeIcon, Package, Component, Activity, Mail, Users } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Dock, DockIcon, DockItem, DockLabel } from '@/components/ui/dock';
 
@@ -60,17 +60,17 @@ export function Navbar() {
                 className={`aspect-square rounded-full ${location.pathname === item.href ? 'bg-tyrano-teal' : 'bg-tyrano-dark/80 hover:bg-tyrano-dark'}`}
               >
                 <Link to={item.href}>
-                  <DockLabel>{item.title}</DockLabel>
                   <DockIcon>{item.icon}</DockIcon>
+                  <DockLabel>{item.title}</DockLabel>
                 </Link>
               </DockItem>
             ))}
             <DockItem className="aspect-square rounded-full bg-gradient-to-r from-tyrano-teal to-tyrano-accent">
               <Link to="/contact">
-                <DockLabel>Contact Us</DockLabel>
                 <DockIcon>
                   <Mail className='h-full w-full text-white' />
                 </DockIcon>
+                <DockLabel>Contact Us</DockLabel>
               </Link>
             </DockItem>
           </Dock>
