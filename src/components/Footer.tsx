@@ -2,6 +2,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Globe } from "@/components/ui/globe";
+import { motion } from "framer-motion";
 
 export function Footer() {
   return (
@@ -60,6 +62,24 @@ export function Footer() {
             </div>
           </div>
         </div>
+        
+        <motion.div 
+          className="relative h-[250px] mb-8 overflow-hidden rounded-lg"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-tyrano-dark/80 z-10 pointer-events-none"></div>
+          <motion.h3 
+            className="absolute top-4 left-4 text-xl font-heading font-bold mb-4 z-20"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400 }}
+          >
+            Global Presence
+          </motion.h3>
+          <Globe className="scale-110" />
+        </motion.div>
         
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-white/60 text-sm mb-4 md:mb-0">

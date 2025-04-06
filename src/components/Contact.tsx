@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MailIcon, PhoneIcon, MapPinIcon } from "lucide-react";
 import { motion } from "framer-motion";
-import { Globe } from "@/components/ui/globe";
 
 export function Contact() {
   return (
@@ -143,35 +142,6 @@ export function Contact() {
                   </p>
                 </ContactItem>
               </div>
-            </motion.div>
-            
-            <motion.div 
-              className="bg-gradient-to-r from-tyrano-teal to-tyrano-accent rounded-lg p-8 text-white relative h-[300px] overflow-hidden"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-              viewport={{ once: true }}
-              whileHover={{ 
-                boxShadow: "0 20px 25px -5px rgba(51, 195, 240, 0.2), 0 10px 10px -5px rgba(51, 195, 240, 0.1)"
-              }}
-            >
-              <motion.h3 
-                className="text-xl font-heading font-bold mb-4 relative z-10"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400 }}
-              >
-                Global Presence
-              </motion.h3>
-              <motion.p
-                className="text-white/80 relative z-10 mb-4"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-              >
-                Our offices and partners across the world
-              </motion.p>
-              <Globe />
-              <div className="absolute inset-0 bg-gradient-to-t from-tyrano-teal/30 to-transparent pointer-events-none"></div>
             </motion.div>
           </div>
         </div>
