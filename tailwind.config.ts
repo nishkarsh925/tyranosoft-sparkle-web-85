@@ -26,10 +26,10 @@ export default {
         foreground: 'hsl(var(--foreground))',
         tyrano: {
           blue: '#000000',
-          teal: '#33C3F0',
-          dark: '#1A1F2C',
+          teal: '#000000',
+          dark: '#000000',
           light: '#F5F7FA',
-          accent: '#7E69AB'
+          accent: '#000000'
         },
         primary: {
           DEFAULT: "#000000",
