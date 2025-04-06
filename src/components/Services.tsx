@@ -65,7 +65,7 @@ interface ServiceCardProps {
 
 function ServiceCard({ icon, title, description }: ServiceCardProps) {
   return (
-    <Card className="border-none shadow-lg hover:shadow-xl transition-shadow group">
+    <Card withTilt rotationFactor={6} className="border-none shadow-lg hover:shadow-xl transition-shadow group">
       <CardHeader className="pb-2">
         <div className="mb-4 transition-transform group-hover:scale-110 duration-300">
           {icon}

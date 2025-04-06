@@ -1,20 +1,33 @@
-import * as React from "react"
 
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { Tilt } from "./tilt";
 
 const Card = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
-      className
-    )}
-    {...props}
-  />
-))
+  React.HTMLAttributes<HTMLDivElement> & { withTilt?: boolean; rotationFactor?: number }
+>(({ className, withTilt = false, rotationFactor = 8, ...props }, ref) => {
+  const content = (
+    <div
+      ref={ref}
+      className={cn(
+        "rounded-lg border bg-card text-card-foreground shadow-sm",
+        className
+      )}
+      {...props}
+    />
+  );
+
+  if (withTilt) {
+    return (
+      <Tilt rotationFactor={rotationFactor} isRevese>
+        {content}
+      </Tilt>
+    );
+  }
+
+  return content;
+})
 Card.displayName = "Card"
 
 const CardHeader = React.forwardRef<

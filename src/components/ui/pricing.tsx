@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 import { Check, Star } from "lucide-react";
 import { useState, useRef } from "react";
 import NumberFlow from "@number-flow/react";
+import { Card } from "./card";
+import { Spotlight } from "./spotlight";
 
 interface PricingPlan {
   name: string;
@@ -69,88 +71,97 @@ export function Pricing({
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {plans.map((plan, index) => (
-          <div
-            key={index}
-            className={cn(
-              `rounded-2xl border-[1px] p-6 bg-white text-center relative`,
-              plan.isPopular ? "border-tyrano-teal border-2" : "border-gray-200",
-              "flex flex-col",
-              !plan.isPopular && "mt-5"
-            )}
-          >
-            {plan.isPopular && (
-              <div className="absolute top-0 right-0 bg-tyrano-teal py-0.5 px-2 rounded-bl-xl rounded-tr-xl flex items-center">
-                <Star className="text-white h-4 w-4 fill-current" />
-                <span className="text-white ml-1 font-sans font-semibold">
-                  Popular
-                </span>
-              </div>
-            )}
-            <div className="flex-1 flex flex-col">
-              <p className="text-base font-semibold text-gray-500">
-                {plan.name}
-              </p>
-              <div className="mt-6 flex items-center justify-center gap-x-2">
-                <span className="text-5xl font-bold tracking-tight text-tyrano-dark">
-                  <NumberFlow
-                    value={
-                      isMonthly ? Number(plan.price) : Number(plan.yearlyPrice)
-                    }
-                    format={{
-                      style: "currency",
-                      currency: "USD",
-                      minimumFractionDigits: 0,
-                      maximumFractionDigits: 0
-                    }}
-                    transformTiming={{
-                      duration: 500,
-                      easing: "ease-out",
-                    }}
-                    willChange
-                    className="font-variant-numeric: tabular-nums"
-                  />
-                </span>
-                {plan.period !== "Next 3 months" && (
-                  <span className="text-sm font-semibold leading-6 tracking-wide text-gray-500">
-                    / {plan.period}
-                  </span>
+          <div key={index} className="group">
+            <Card
+              withTilt
+              rotationFactor={5}
+              className={cn(
+                `rounded-2xl border-[1px] p-6 bg-white text-center relative`,
+                plan.isPopular ? "border-tyrano-teal border-2" : "border-gray-200",
+                "flex flex-col",
+                !plan.isPopular && "mt-5",
+                "transform-gpu transition-all duration-300"
+              )}
+            >
+              <div className="relative">
+                {plan.isPopular && (
+                  <>
+                    <Spotlight className="group-hover:opacity-100 opacity-0 transition-opacity duration-500 from-tyrano-teal/30 via-transparent to-transparent" />
+                    <div className="absolute top-0 right-0 bg-tyrano-teal py-0.5 px-2 rounded-bl-xl rounded-tr-xl flex items-center">
+                      <Star className="text-white h-4 w-4 fill-current" />
+                      <span className="text-white ml-1 font-sans font-semibold">
+                        Popular
+                      </span>
+                    </div>
+                  </>
                 )}
+                <div className="flex-1 flex flex-col">
+                  <p className="text-base font-semibold text-gray-500">
+                    {plan.name}
+                  </p>
+                  <div className="mt-6 flex items-center justify-center gap-x-2">
+                    <span className="text-5xl font-bold tracking-tight text-tyrano-dark">
+                      <NumberFlow
+                        value={
+                          isMonthly ? Number(plan.price) : Number(plan.yearlyPrice)
+                        }
+                        format={{
+                          style: "currency",
+                          currency: "USD",
+                          minimumFractionDigits: 0,
+                          maximumFractionDigits: 0
+                        }}
+                        transformTiming={{
+                          duration: 500,
+                          easing: "ease-out",
+                        }}
+                        willChange
+                        className="font-variant-numeric: tabular-nums"
+                      />
+                    </span>
+                    {plan.period !== "Next 3 months" && (
+                      <span className="text-sm font-semibold leading-6 tracking-wide text-gray-500">
+                        / {plan.period}
+                      </span>
+                    )}
+                  </div>
+
+                  <p className="text-xs leading-5 text-gray-500">
+                    {isMonthly ? "billed monthly" : "billed annually"}
+                  </p>
+
+                  <ul className="mt-5 gap-2 flex flex-col">
+                    {plan.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <Check className="h-4 w-4 text-tyrano-teal mt-1 flex-shrink-0" />
+                        <span className="text-left text-gray-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <hr className="w-full my-4" />
+
+                  <a
+                    href={plan.href}
+                    className={cn(
+                      buttonVariants({
+                        variant: "outline",
+                      }),
+                      "group relative w-full gap-2 overflow-hidden text-lg font-semibold tracking-tighter",
+                      "transform-gpu transition-all duration-300 ease-out hover:ring-2 hover:ring-tyrano-teal hover:ring-offset-1 hover:bg-tyrano-teal hover:text-white",
+                      plan.isPopular
+                        ? "bg-tyrano-teal text-white"
+                        : "bg-white text-tyrano-dark"
+                    )}
+                  >
+                    {plan.buttonText}
+                  </a>
+                  <p className="mt-6 text-xs leading-5 text-gray-500">
+                    {plan.description}
+                  </p>
+                </div>
               </div>
-
-              <p className="text-xs leading-5 text-gray-500">
-                {isMonthly ? "billed monthly" : "billed annually"}
-              </p>
-
-              <ul className="mt-5 gap-2 flex flex-col">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <Check className="h-4 w-4 text-tyrano-teal mt-1 flex-shrink-0" />
-                    <span className="text-left text-gray-700">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <hr className="w-full my-4" />
-
-              <a
-                href={plan.href}
-                className={cn(
-                  buttonVariants({
-                    variant: "outline",
-                  }),
-                  "group relative w-full gap-2 overflow-hidden text-lg font-semibold tracking-tighter",
-                  "transform-gpu transition-all duration-300 ease-out hover:ring-2 hover:ring-tyrano-teal hover:ring-offset-1 hover:bg-tyrano-teal hover:text-white",
-                  plan.isPopular
-                    ? "bg-tyrano-teal text-white"
-                    : "bg-white text-tyrano-dark"
-                )}
-              >
-                {plan.buttonText}
-              </a>
-              <p className="mt-6 text-xs leading-5 text-gray-500">
-                {plan.description}
-              </p>
-            </div>
+            </Card>
           </div>
         ))}
       </div>
