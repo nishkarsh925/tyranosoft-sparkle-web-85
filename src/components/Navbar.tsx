@@ -1,13 +1,15 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { MenuIcon, X, HomeIcon, Package, Component, Activity, Mail, Users } from "lucide-react";
+import { MenuIcon, X, HomeIcon, Package, Component, Activity, Mail, Users, Moon, Sun } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Dock, DockIcon, DockItem, DockLabel } from '@/components/ui/dock';
+import { useTheme } from '@/components/ThemeProvider';
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { theme, setTheme } = useTheme();
   
   const navItems = [
     {
@@ -43,12 +45,19 @@ export function Navbar() {
   ];
   
   return (
-    <nav className="w-full fixed top-0 z-50 bg-tyrano-dark/90 backdrop-blur-md border-b border-white/10">
+    <nav className="w-full fixed top-0 z-50 bg-tyrano-dark/90 dark:bg-tyrano-dark/95 backdrop-blur-md border-b border-white/10">
       <div className="container mx-auto px-4 py-4">
         <div className="flex flex-col items-center">
-          <Link to="/" className="mb-2">
-           
-          </Link>
+          {/* Theme toggle button - positioned absolutely at the right */}
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="absolute top-4 left-4 text-white hover:text-tyrano-teal"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          >
+            {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            <span className="sr-only">Toggle theme</span>
+          </Button>
           
           {/* Desktop Navigation (Dock-style) - Now centered */}
           <div className="hidden md:block w-full">
@@ -124,4 +133,3 @@ function MobileNavLink({ href, children, onClick }: MobileNavLinkProps) {
     </Link>
   );
 }
-
