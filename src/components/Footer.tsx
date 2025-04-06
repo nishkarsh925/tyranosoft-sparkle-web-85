@@ -9,6 +9,24 @@ export function Footer() {
   return (
     <footer className="bg-tyrano-dark text-white">
       <div className="container mx-auto px-4 py-12">
+        <motion.div 
+          className="relative h-[250px] mb-12 overflow-hidden rounded-lg"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-tyrano-dark/80 z-10 pointer-events-none"></div>
+          <motion.h3 
+            className="absolute top-4 left-4 text-xl font-heading font-bold mb-4 z-20"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400 }}
+          >
+            Global Presence
+          </motion.h3>
+          <Globe className="scale-110" />
+        </motion.div>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <Link to="/" className="flex items-center gap-2 mb-6">
@@ -62,24 +80,6 @@ export function Footer() {
             </div>
           </div>
         </div>
-        
-        <motion.div 
-          className="relative h-[250px] mb-8 overflow-hidden rounded-lg"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-tyrano-dark/80 z-10 pointer-events-none"></div>
-          <motion.h3 
-            className="absolute top-4 left-4 text-xl font-heading font-bold mb-4 z-20"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400 }}
-          >
-            Global Presence
-          </motion.h3>
-          <Globe className="scale-110" />
-        </motion.div>
         
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-white/60 text-sm mb-4 md:mb-0">
