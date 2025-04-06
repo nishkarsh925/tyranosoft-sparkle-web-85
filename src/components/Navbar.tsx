@@ -19,13 +19,13 @@ export function Navbar() {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
           <div className="flex gap-6">
-            <NavLink href="/#services">Services</NavLink>
-            <NavLink href="/#about">About</NavLink>
-            <NavLink href="/#products">Products</NavLink>
-            <NavLink href="/#testimonials">Testimonials</NavLink>
+            <NavLink href="/services">Services</NavLink>
+            <NavLink href="/about">About</NavLink>
+            <NavLink href="/products">Products</NavLink>
+            <NavLink href="/pricing">Pricing</NavLink>
           </div>
           <Button className="bg-gradient-to-r from-tyrano-teal to-tyrano-accent hover:opacity-90 transition-opacity">
-            Contact Us
+            <Link to="/contact">Contact Us</Link>
           </Button>
         </div>
         
@@ -42,12 +42,12 @@ export function Navbar() {
       {isMenuOpen && (
         <div className="md:hidden bg-tyrano-dark/95 backdrop-blur-md">
           <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            <MobileNavLink href="/#services" onClick={() => setIsMenuOpen(false)}>Services</MobileNavLink>
-            <MobileNavLink href="/#about" onClick={() => setIsMenuOpen(false)}>About</MobileNavLink>
-            <MobileNavLink href="/#products" onClick={() => setIsMenuOpen(false)}>Products</MobileNavLink>
-            <MobileNavLink href="/#testimonials" onClick={() => setIsMenuOpen(false)}>Testimonials</MobileNavLink>
+            <MobileNavLink href="/services" onClick={() => setIsMenuOpen(false)}>Services</MobileNavLink>
+            <MobileNavLink href="/about" onClick={() => setIsMenuOpen(false)}>About</MobileNavLink>
+            <MobileNavLink href="/products" onClick={() => setIsMenuOpen(false)}>Products</MobileNavLink>
+            <MobileNavLink href="/pricing" onClick={() => setIsMenuOpen(false)}>Pricing</MobileNavLink>
             <Button className="bg-gradient-to-r from-tyrano-teal to-tyrano-accent hover:opacity-90 transition-opacity w-full mt-2">
-              Contact Us
+              <Link to="/contact">Contact Us</Link>
             </Button>
           </div>
         </div>
@@ -63,12 +63,12 @@ interface NavLinkProps {
 
 function NavLink({ href, children }: NavLinkProps) {
   return (
-    <a 
-      href={href} 
+    <Link 
+      to={href} 
       className="text-white/80 hover:text-white transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-tyrano-teal after:transition-all"
     >
       {children}
-    </a>
+    </Link>
   );
 }
 
@@ -78,12 +78,12 @@ interface MobileNavLinkProps extends NavLinkProps {
 
 function MobileNavLink({ href, children, onClick }: MobileNavLinkProps) {
   return (
-    <a 
-      href={href} 
+    <Link 
+      to={href} 
       className="text-white/80 hover:text-white transition-colors py-2 border-b border-white/10"
       onClick={onClick}
     >
       {children}
-    </a>
+    </Link>
   );
 }
