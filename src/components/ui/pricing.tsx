@@ -100,8 +100,7 @@ export function Pricing({
                       style: "currency",
                       currency: "USD",
                       minimumFractionDigits: 0,
-                      maximumFractionDigits: 0,
-                      prefix: "$"
+                      maximumFractionDigits: 0
                     }}
                     transformTiming={{
                       duration: 500,
