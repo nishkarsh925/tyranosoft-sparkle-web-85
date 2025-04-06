@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -25,14 +26,14 @@ export default {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         tyrano: {
-          blue: '#000000',
+          blue: '#33C3F0',
           teal: '#33C3F0',
           dark: '#33C3F0',
           light: '#F5F7FA',
-          accent: '#000000'
+          accent: '#33C3F0'
         },
         primary: {
-          DEFAULT: "#000000",
+          DEFAULT: "#33C3F0",
           foreground: "#ffffff"
         },
         secondary: {
