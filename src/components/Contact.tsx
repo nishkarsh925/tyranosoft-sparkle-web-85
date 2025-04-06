@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MailIcon, PhoneIcon, MapPinIcon } from "lucide-react";
 import { motion } from "framer-motion";
+import { Globe } from "@/components/ui/globe";
 
 export function Contact() {
   return (
@@ -145,7 +146,7 @@ export function Contact() {
             </motion.div>
             
             <motion.div 
-              className="bg-gradient-to-r from-tyrano-teal to-tyrano-accent rounded-lg p-8 text-white"
+              className="bg-gradient-to-r from-tyrano-teal to-tyrano-accent rounded-lg p-8 text-white relative h-[300px] overflow-hidden"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
@@ -155,31 +156,22 @@ export function Contact() {
               }}
             >
               <motion.h3 
-                className="text-xl font-heading font-bold mb-4"
+                className="text-xl font-heading font-bold mb-4 relative z-10"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                Business Hours
+                Global Presence
               </motion.h3>
-              <motion.div 
-                className="space-y-2"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: {
-                    opacity: 1,
-                    transition: {
-                      staggerChildren: 0.1
-                    }
-                  }
-                }}
+              <motion.p
+                className="text-white/80 relative z-10 mb-4"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
               >
-                <BusinessHours day="Monday - Friday" hours="9:00 AM - 6:00 PM" />
-                <BusinessHours day="Saturday" hours="10:00 AM - 4:00 PM" />
-                <BusinessHours day="Sunday" hours="Closed" />
-              </motion.div>
+                Our offices and partners across the world
+              </motion.p>
+              <Globe />
+              <div className="absolute inset-0 bg-gradient-to-t from-tyrano-teal/30 to-transparent pointer-events-none"></div>
             </motion.div>
           </div>
         </div>
@@ -215,28 +207,6 @@ function ContactItem({ icon, title, children, delay }: ContactItemProps) {
         <h4 className="text-lg font-medium mb-1">{title}</h4>
         {children}
       </div>
-    </motion.div>
-  );
-}
-
-interface BusinessHoursProps {
-  day: string;
-  hours: string;
-}
-
-function BusinessHours({ day, hours }: BusinessHoursProps) {
-  return (
-    <motion.div 
-      className="flex justify-between"
-      variants={{
-        hidden: { opacity: 0, y: 5 },
-        visible: { opacity: 1, y: 0 }
-      }}
-      whileHover={{ x: 5 }}
-      transition={{ type: "spring", stiffness: 300 }}
-    >
-      <span>{day}:</span>
-      <span>{hours}</span>
     </motion.div>
   );
 }
