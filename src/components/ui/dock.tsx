@@ -170,7 +170,7 @@ function DockItem({ children, className }: DockItemProps) {
 }
 
 function DockLabel({ children, className, isHovered, ...rest }: DockLabelProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = React.useState(false);
 
   React.useEffect(() => {
     if (!isHovered) {
