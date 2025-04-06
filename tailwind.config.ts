@@ -27,7 +27,7 @@ export default {
         tyrano: {
           blue: '#000000',
           teal: '#000000',
-          dark: '#000000',
+          dark: '#0000FF',
           light: '#F5F7FA',
           accent: '#000000'
         },
