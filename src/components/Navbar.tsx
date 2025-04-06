@@ -44,41 +44,43 @@ export function Navbar() {
   
   return (
     <nav className="w-full fixed top-0 z-50 bg-tyrano-dark/90 backdrop-blur-md border-b border-white/10">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="font-heading text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-tyrano-teal to-tyrano-accent">
-            TyranoSoftwares
-          </span>
-        </Link>
-        
-        {/* Desktop Navigation (Dock-style) */}
-        <div className="hidden md:block">
-          <Dock className="items-end pb-1 bg-transparent">
-            {navItems.map((item, idx) => (
-              <DockItem
-                key={idx}
-                className={`aspect-square rounded-full ${location.pathname === item.href ? 'bg-tyrano-teal' : 'bg-tyrano-dark/80 hover:bg-tyrano-dark'}`}
-              >
-                <Link to={item.href}>
-                  <DockIcon>{item.icon}</DockIcon>
-                  <DockLabel>{item.title}</DockLabel>
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex flex-col items-center">
+          <Link to="/" className="mb-2">
+            <span className="font-heading text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-tyrano-teal to-tyrano-accent">
+              TyranoSoftwares
+            </span>
+          </Link>
+          
+          {/* Desktop Navigation (Dock-style) - Now centered */}
+          <div className="hidden md:block w-full">
+            <Dock className="items-end pb-1 bg-transparent">
+              {navItems.map((item, idx) => (
+                <DockItem
+                  key={idx}
+                  className={`aspect-square rounded-full ${location.pathname === item.href ? 'bg-tyrano-teal' : 'bg-tyrano-dark/80 hover:bg-tyrano-dark'}`}
+                >
+                  <Link to={item.href}>
+                    <DockIcon>{item.icon}</DockIcon>
+                    <DockLabel>{item.title}</DockLabel>
+                  </Link>
+                </DockItem>
+              ))}
+              <DockItem className="aspect-square rounded-full bg-gradient-to-r from-tyrano-teal to-tyrano-accent">
+                <Link to="/contact">
+                  <DockIcon>
+                    <Mail className='h-full w-full text-white' />
+                  </DockIcon>
+                  <DockLabel>Contact Us</DockLabel>
                 </Link>
               </DockItem>
-            ))}
-            <DockItem className="aspect-square rounded-full bg-gradient-to-r from-tyrano-teal to-tyrano-accent">
-              <Link to="/contact">
-                <DockIcon>
-                  <Mail className='h-full w-full text-white' />
-                </DockIcon>
-                <DockLabel>Contact Us</DockLabel>
-              </Link>
-            </DockItem>
-          </Dock>
+            </Dock>
+          </div>
         </div>
         
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Menu Toggle - Positioned absolutely at the right */}
         <button 
-          className="md:hidden text-white"
+          className="md:hidden text-white absolute top-4 right-4"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? <X size={24} /> : <MenuIcon size={24} />}
@@ -124,3 +126,4 @@ function MobileNavLink({ href, children, onClick }: MobileNavLinkProps) {
     </Link>
   );
 }
+
