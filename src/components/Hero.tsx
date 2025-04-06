@@ -67,7 +67,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <Button variant="star" className="bg-gradient-to-r from-tyrano-teal to-tyrano-accent hover:opacity-90 transition-opacity text-white px-8 py-6 text-lg">
+          <Button variant="star" className="bg-gradient-to-r from-tyrano-teal to-tyrano-accent hover:opacity-90 transition-opacity text-white px-8 py-6 text-lg border-none">
             Get Started
           </Button>
           <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-6 text-lg">
