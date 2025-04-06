@@ -68,7 +68,7 @@ export function Footer() {
               </p>
               <div className="flex gap-2">
                 <Input placeholder="Your email" className="bg-white/10 border-white/20 text-white" />
-                <Button className="bg-tyrano-teal text-tyrano-dark hover:bg-tyrano-teal/90">
+                <Button variant="star" className="text-white">
                   Subscribe
                 </Button>
               </div>

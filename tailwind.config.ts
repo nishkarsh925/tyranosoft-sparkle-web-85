@@ -72,8 +72,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        heading: ['Poppins', 'sans-serif'],
+        sans: ['Montserrat', 'sans-serif'],
+        heading: ['Montserrat', 'sans-serif'],
         mono: ['Fira Code', 'monospace'],
       },
       borderRadius: {
@@ -115,13 +115,23 @@ export default {
           '50%': {
             transform: 'translateY(-10px)'
           }
+        },
+        'star-movement-bottom': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-33.3%)' }
+        },
+        'star-movement-top': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(33.3%)' }
         }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in': 'fade-in 0.5s ease-out forwards',
-        'float': 'float 6s ease-in-out infinite'
+        'float': 'float 6s ease-in-out infinite',
+        'star-movement-bottom': 'star-movement-bottom linear infinite',
+        'star-movement-top': 'star-movement-top linear infinite'
       }
     }
   },
