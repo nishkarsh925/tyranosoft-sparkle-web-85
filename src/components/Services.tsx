@@ -1,6 +1,8 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CodeIcon, CloudIcon, BarChartIcon, LayoutIcon, CpuIcon, DatabaseIcon } from "lucide-react";
+import { Lens } from "@/components/ui/lens";
+import { useState } from "react";
 
 export function Services() {
   return (
@@ -64,17 +66,21 @@ interface ServiceCardProps {
 }
 
 function ServiceCard({ icon, title, description }: ServiceCardProps) {
+  const [hovering, setHovering] = useState(false);
+  
   return (
-    <Card withTilt rotationFactor={6} className="border-none shadow-lg hover:shadow-xl transition-shadow group">
-      <CardHeader className="pb-2">
-        <div className="mb-4 transition-transform group-hover:scale-110 duration-300">
-          {icon}
-        </div>
-        <CardTitle className="text-xl font-heading text-tyrano-dark">{title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <CardDescription className="text-gray-600">{description}</CardDescription>
-      </CardContent>
-    </Card>
+    <Lens hovering={hovering} setHovering={setHovering} zoomFactor={1.3}>
+      <Card className="border-none shadow-lg hover:shadow-xl transition-shadow group h-full">
+        <CardHeader className="pb-2">
+          <div className="mb-4 transition-transform group-hover:scale-110 duration-300">
+            {icon}
+          </div>
+          <CardTitle className="text-xl font-heading text-tyrano-dark">{title}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CardDescription className="text-gray-600">{description}</CardDescription>
+        </CardContent>
+      </Card>
+    </Lens>
   );
 }

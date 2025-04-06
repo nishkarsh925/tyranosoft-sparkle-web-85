@@ -3,6 +3,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Spotlight } from "@/components/ui/spotlight";
+import { Lens } from "@/components/ui/lens";
+import { useState } from "react";
 
 export function Products() {
   return (
@@ -58,30 +60,34 @@ interface ProductCardProps {
 }
 
 function ProductCard({ title, description, image, tag }: ProductCardProps) {
+  const [hovering, setHovering] = useState(false);
+  
   return (
     <div className="group">
-      <Card withTilt rotationFactor={6} className="overflow-hidden border-none shadow-xl transition-all hover:shadow-2xl duration-300 relative">
-        <Spotlight className="group-hover:opacity-100 opacity-0 transition-opacity duration-500 from-tyrano-teal/30 via-transparent to-transparent" />
-        <div className="h-48 overflow-hidden">
-          <img
-            src={image}
-            alt={title}
-            className="w-full h-full object-cover object-center transition-transform hover:scale-110 duration-700"
-          />
-        </div>
-        <div className="absolute top-4 right-4 bg-tyrano-teal text-white text-xs font-medium px-2 py-1 rounded">
-          {tag}
-        </div>
-        <CardHeader>
-          <CardTitle className="text-xl font-heading text-tyrano-dark">{title}</CardTitle>
-          <CardDescription className="text-gray-600">{description}</CardDescription>
-        </CardHeader>
-        <CardFooter>
-          <Button variant="ghost" className="text-tyrano-teal hover:text-tyrano-blue hover:bg-tyrano-teal/10 p-0">
-            Learn More <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </CardFooter>
-      </Card>
+      <Lens hovering={hovering} setHovering={setHovering} zoomFactor={1.3}>
+        <Card className="overflow-hidden border-none shadow-xl transition-all hover:shadow-2xl duration-300 relative h-full">
+          <Spotlight className="group-hover:opacity-100 opacity-0 transition-opacity duration-500 from-tyrano-teal/30 via-transparent to-transparent" />
+          <div className="h-48 overflow-hidden">
+            <img
+              src={image}
+              alt={title}
+              className="w-full h-full object-cover object-center transition-transform hover:scale-110 duration-700"
+            />
+          </div>
+          <div className="absolute top-4 right-4 bg-tyrano-teal text-white text-xs font-medium px-2 py-1 rounded">
+            {tag}
+          </div>
+          <CardHeader>
+            <CardTitle className="text-xl font-heading text-tyrano-dark">{title}</CardTitle>
+            <CardDescription className="text-gray-600">{description}</CardDescription>
+          </CardHeader>
+          <CardFooter>
+            <Button variant="ghost" className="text-tyrano-teal hover:text-tyrano-blue hover:bg-tyrano-teal/10 p-0">
+              Learn More <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </CardFooter>
+        </Card>
+      </Lens>
     </div>
   );
 }

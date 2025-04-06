@@ -4,6 +4,8 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Lens } from "@/components/ui/lens";
+import { useState } from "react";
 
 const ProductsPage = () => {
   return (
@@ -134,40 +136,44 @@ interface ProductCardProps {
 }
 
 function ProductCard({ title, description, image, tag, features }: ProductCardProps) {
+  const [hovering, setHovering] = useState(false);
+  
   return (
-    <Card className="overflow-hidden border-none shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl duration-300">
-      <div className="h-48 overflow-hidden">
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover object-center transition-transform hover:scale-110 duration-700"
-        />
-      </div>
-      <div className="absolute top-4 right-4 bg-tyrano-teal text-white text-xs font-medium px-2 py-1 rounded">
-        {tag}
-      </div>
-      <CardHeader>
-        <CardTitle className="text-xl font-heading text-tyrano-dark">{title}</CardTitle>
-        <CardDescription className="text-gray-600">{description}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <ul className="space-y-2">
-          {features.map((feature, index) => (
-            <li key={index} className="flex items-center text-gray-700">
-              <svg className="w-5 h-5 text-tyrano-teal mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-              {feature}
-            </li>
-          ))}
-        </ul>
-      </CardContent>
-      <CardFooter>
-        <Button variant="ghost" className="text-tyrano-teal hover:text-tyrano-blue hover:bg-tyrano-teal/10 p-0">
-          Learn More <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
-      </CardFooter>
-    </Card>
+    <Lens hovering={hovering} setHovering={setHovering} zoomFactor={1.3}>
+      <Card className="overflow-hidden border-none shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl duration-300 h-full">
+        <div className="h-48 overflow-hidden">
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover object-center transition-transform hover:scale-110 duration-700"
+          />
+        </div>
+        <div className="absolute top-4 right-4 bg-tyrano-teal text-white text-xs font-medium px-2 py-1 rounded">
+          {tag}
+        </div>
+        <CardHeader>
+          <CardTitle className="text-xl font-heading text-tyrano-dark">{title}</CardTitle>
+          <CardDescription className="text-gray-600">{description}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <ul className="space-y-2">
+            {features.map((feature, index) => (
+              <li key={index} className="flex items-center text-gray-700">
+                <svg className="w-5 h-5 text-tyrano-teal mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+        <CardFooter>
+          <Button variant="ghost" className="text-tyrano-teal hover:text-tyrano-blue hover:bg-tyrano-teal/10 p-0">
+            Learn More <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </CardFooter>
+      </Card>
+    </Lens>
   );
 }
 
