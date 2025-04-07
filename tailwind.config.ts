@@ -26,14 +26,14 @@ export default {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         tyrano: {
-          blue: '#000000',
-          teal: '#33C3F0',
-          dark: '#000000',
+          blue: '#393BB2',
+          teal: '#9b87f5',
+          dark: '#1A1F2C',
           light: '#F5F7FA',
-          accent: '#33C3F0'
+          accent: '#E2CBFF'
         },
         primary: {
-          DEFAULT: "#33C3F0",
+          DEFAULT: "#9b87f5",
           foreground: "#ffffff"
         },
         secondary: {
@@ -75,6 +75,7 @@ export default {
         sans: ['Montserrat', 'sans-serif'],
         heading: ['Montserrat', 'sans-serif'],
         mono: ['Fira Code', 'monospace'],
+        geist: ['ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -123,6 +124,10 @@ export default {
         'star-movement-top': {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(33.3%)' }
+        },
+        grid: {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(calc(var(--cell-size) * -1))' }
         }
       },
       animation: {
@@ -131,7 +136,8 @@ export default {
         'fade-in': 'fade-in 0.5s ease-out forwards',
         'float': 'float 6s ease-in-out infinite',
         'star-movement-bottom': 'star-movement-bottom linear infinite',
-        'star-movement-top': 'star-movement-top linear infinite'
+        'star-movement-top': 'star-movement-top linear infinite',
+        'grid': 'grid 5s linear infinite'
       }
     }
   },

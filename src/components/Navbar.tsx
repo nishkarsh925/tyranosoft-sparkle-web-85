@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { MenuIcon, X, HomeIcon, Package, Component, Activity, Mail, Users, Moon, Sun } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
@@ -52,7 +52,7 @@ export function Navbar() {
           <Button 
             variant="ghost" 
             size="icon" 
-            className="absolute top-4 left-4 text-white hover:text-tyrano-teal"
+            className="absolute top-4 left-4 text-white hover:text-primary"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           >
             {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
@@ -65,7 +65,7 @@ export function Navbar() {
               {navItems.map((item, idx) => (
                 <DockItem
                   key={idx}
-                  className={`aspect-square rounded-full ${location.pathname === item.href ? 'bg-tyrano-teal' : 'bg-tyrano-dark/80 hover:bg-tyrano-dark'}`}
+                  className={`aspect-square rounded-full ${location.pathname === item.href ? 'bg-primary' : 'bg-tyrano-dark/80 hover:bg-tyrano-dark'}`}
                 >
                   <Link to={item.href}>
                     <DockIcon>{item.icon}</DockIcon>
@@ -73,7 +73,7 @@ export function Navbar() {
                   </Link>
                 </DockItem>
               ))}
-              <DockItem className="aspect-square rounded-full bg-gradient-to-r from-tyrano-teal to-tyrano-accent">
+              <DockItem className="aspect-square rounded-full bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-300 dark:to-orange-200">
                 <Link to="/contact">
                   <DockIcon>
                     <Mail className='h-full w-full text-white' />
@@ -103,7 +103,7 @@ export function Navbar() {
             <MobileNavLink href="/about" onClick={() => setIsMenuOpen(false)}>About</MobileNavLink>
             <MobileNavLink href="/products" onClick={() => setIsMenuOpen(false)}>Products</MobileNavLink>
             <MobileNavLink href="/pricing" onClick={() => setIsMenuOpen(false)}>Pricing</MobileNavLink>
-            <Button className="bg-gradient-to-r from-tyrano-teal to-tyrano-accent hover:opacity-90 transition-opacity w-full mt-2">
+            <Button className="bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-300 dark:to-orange-200 hover:opacity-90 transition-opacity w-full mt-2">
               <Link to="/contact">Contact Us</Link>
             </Button>
           </div>

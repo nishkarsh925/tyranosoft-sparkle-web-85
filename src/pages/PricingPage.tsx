@@ -65,11 +65,11 @@ const pricingPlans = [
 
 const PricingPage = () => {
   return (
-    <div className="min-h-screen bg-tyrano-dark text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       
       <div className="relative pt-20">
-        <div className="absolute inset-0 w-full h-screen">
+        <div className="absolute inset-0 w-full h-screen bg-purple-950/10 bg-[radial-gradient(ellipse_20%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_20%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
           <SparklesCore
             id="tsparticlespricing"
             background="transparent"
@@ -77,7 +77,7 @@ const PricingPage = () => {
             maxSize={1.4}
             particleDensity={70}
             className="w-full h-full"
-            particleColor="#33C3F0"
+            particleColor="#9b87f5"
             speed={0.8}
           />
         </div>
@@ -85,18 +85,18 @@ const PricingPage = () => {
         <div className="container mx-auto px-4 py-10 relative z-10">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold font-heading mb-6">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-tyrano-teal to-tyrano-accent">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-300 dark:to-orange-200">
                 Transparent Pricing
               </span>
             </h1>
-            <p className="text-lg text-white/80 max-w-3xl mx-auto">
+            <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
               Choose the plan that matches your business needs. All plans include our core software development services.
             </p>
           </div>
         </div>
       </div>
       
-      <section className="bg-white py-6">
+      <section className="bg-background py-6">
         <Pricing 
           plans={pricingPlans}
           title="Software Development Plans"
@@ -105,29 +105,29 @@ All plans include our core development services, quality assurance, and maintena
         />
       </section>
       
-      <section className="py-16 bg-tyrano-light">
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-tyrano-dark text-center mb-12">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-bold text-foreground text-center mb-12">Frequently Asked Questions</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold text-tyrano-dark mb-3">Can I upgrade my plan later?</h3>
-              <p className="text-gray-600">Yes, you can upgrade your plan at any time. The new charges will be prorated for the remainder of the billing cycle.</p>
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-bold text-foreground mb-3">Can I upgrade my plan later?</h3>
+              <p className="text-muted-foreground">Yes, you can upgrade your plan at any time. The new charges will be prorated for the remainder of the billing cycle.</p>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold text-tyrano-dark mb-3">Do you offer custom pricing?</h3>
-              <p className="text-gray-600">Yes, we offer custom pricing for organizations with specific needs that aren't covered by our standard plans. Contact our sales team for details.</p>
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-bold text-foreground mb-3">Do you offer custom pricing?</h3>
+              <p className="text-muted-foreground">Yes, we offer custom pricing for organizations with specific needs that aren't covered by our standard plans. Contact our sales team for details.</p>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold text-tyrano-dark mb-3">What payment methods do you accept?</h3>
-              <p className="text-gray-600">We accept all major credit cards, bank transfers, and can accommodate purchase orders for enterprise clients.</p>
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-bold text-foreground mb-3">What payment methods do you accept?</h3>
+              <p className="text-muted-foreground">We accept all major credit cards, bank transfers, and can accommodate purchase orders for enterprise clients.</p>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold text-tyrano-dark mb-3">Is there a minimum contract period?</h3>
-              <p className="text-gray-600">Our monthly plans can be canceled at any time. Annual plans have a 12-month commitment with significant savings.</p>
+            <div className="bg-card p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-bold text-foreground mb-3">Is there a minimum contract period?</h3>
+              <p className="text-muted-foreground">Our monthly plans can be canceled at any time. Annual plans have a 12-month commitment with significant savings.</p>
             </div>
           </div>
         </div>
