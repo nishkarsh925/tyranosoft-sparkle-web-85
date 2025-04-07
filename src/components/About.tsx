@@ -21,7 +21,7 @@ export function About() {
   return (
     <section id="about" className="py-20 bg-gradient-to-br from-tyrano-dark to-tyrano-dark/95 text-white">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 gap-12 items-center">
           <motion.div
             initial="hidden"
             whileInView="show"
@@ -29,7 +29,7 @@ export function About() {
             variants={containerAnimation}
           >
             <motion.h2 
-              className="text-3xl md:text-4xl font-geist tracking-tighter font-bold mb-6"
+              className="text-3xl md:text-4xl font-geist tracking-tighter mb-6"
               variants={itemAnimation}
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -120,7 +120,7 @@ export function About() {
           </motion.div>
           
           <motion.div 
-            className="relative"
+            className="relative mt-12"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
@@ -169,7 +169,7 @@ function CounterItem({ value, label, delay }: CounterItemProps) {
       viewport={{ once: true }}
     >
       <motion.h3 
-        className="text-4xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-tyrano-teal to-tyrano-accent mb-2"
+        className="text-4xl lg:text-5xl font-geist tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-tyrano-teal to-tyrano-accent mb-2"
         whileHover={{ scale: 1.1 }}
         transition={{ type: "spring", stiffness: 300 }}
       >
