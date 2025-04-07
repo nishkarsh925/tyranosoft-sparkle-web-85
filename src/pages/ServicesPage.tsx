@@ -26,7 +26,7 @@ export function ServiceCard({ icon, title, description }: { icon: React.ReactNod
             >
               {icon}
             </motion.div>
-            <CardTitle className="text-xl font-heading text-tyrano-dark">{title}</CardTitle>
+            <CardTitle className="text-xl font-geist tracking-tighter text-tyrano-dark">{title}</CardTitle>
           </CardHeader>
           <CardContent>
             <CardDescription className="text-gray-600">{description}</CardDescription>
@@ -45,7 +45,7 @@ const ServicesPage = () => {
       <div className="relative pt-20 px-4 bg-tyrano-light">
         <div className="container mx-auto py-20 text-center">
           <motion.h1 
-            className="text-4xl md:text-5xl font-bold font-heading text-tyrano-dark mb-6"
+            className="text-4xl md:text-5xl font-geist tracking-tighter font-bold text-tyrano-dark mb-6"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}

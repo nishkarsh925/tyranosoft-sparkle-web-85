@@ -17,7 +17,7 @@ export function Services() {
           className="text-center mb-16"
         >
           <motion.h2 
-            className="text-3xl md:text-4xl font-heading font-bold text-tyrano-dark mb-4"
+            className="text-3xl md:text-4xl font-geist tracking-tighter font-bold text-tyrano-dark mb-4"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
@@ -113,7 +113,7 @@ function ServiceCard({ icon, title, description, index }: ServiceCardProps) {
               >
                 {icon}
               </motion.div>
-              <CardTitle className="text-xl font-heading text-tyrano-dark">{title}</CardTitle>
+              <CardTitle className="text-xl font-geist tracking-tighter text-tyrano-dark">{title}</CardTitle>
             </CardHeader>
             <CardContent>
               <CardDescription className="text-gray-600">{description}</CardDescription>

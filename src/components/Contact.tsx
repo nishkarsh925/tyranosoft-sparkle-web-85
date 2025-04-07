@@ -17,7 +17,7 @@ export function Contact() {
           viewport={{ once: true }}
         >
           <motion.h2 
-            className="text-3xl md:text-4xl font-heading font-bold text-tyrano-dark mb-4"
+            className="text-3xl md:text-4xl font-geist tracking-tighter font-bold text-tyrano-dark mb-4"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
@@ -43,7 +43,7 @@ export function Contact() {
             viewport={{ once: true }}
           >
             <motion.h3 
-              className="text-2xl font-heading font-bold text-tyrano-dark mb-6"
+              className="text-2xl font-geist tracking-tighter font-bold text-tyrano-dark mb-6"
               whileHover={{ color: "#33C3F0" }}
               transition={{ duration: 0.3 }}
             >
@@ -115,7 +115,7 @@ export function Contact() {
               whileHover={{ y: -5 }}
             >
               <motion.h3 
-                className="text-2xl font-heading font-bold mb-6"
+                className="text-2xl font-geist tracking-tighter font-bold mb-6"
                 whileHover={{ color: "#33C3F0" }}
                 transition={{ duration: 0.3 }}
               >

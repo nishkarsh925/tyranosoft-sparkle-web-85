@@ -73,7 +73,7 @@ export default {
       },
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],
-        heading: ['Montserrat', 'sans-serif'],
+        heading: ['ui-sans-serif', 'system-ui', 'sans-serif'], // Update heading font to match hero
         mono: ['Fira Code', 'monospace'],
         geist: ['ui-sans-serif', 'system-ui', 'sans-serif'],
       },

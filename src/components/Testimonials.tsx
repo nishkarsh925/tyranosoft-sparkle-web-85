@@ -7,7 +7,7 @@ export function Testimonials() {
     <section id="testimonials" className="py-20 bg-gradient-to-br from-tyrano-dark to-tyrano-dark/90 text-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-geist tracking-tighter font-bold mb-4">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-tyrano-teal to-tyrano-accent">
               Client Testimonials
             </span>

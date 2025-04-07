@@ -36,7 +36,7 @@ const NotFound = () => {
         </div>
         
         <div className="text-center relative z-10 px-4">
-          <h1 className="text-9xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-300 dark:to-orange-200 mb-4">404</h1>
+          <h1 className="text-9xl font-geist tracking-tighter font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500 dark:from-purple-300 dark:to-orange-200 mb-4">404</h1>
           <p className="text-2xl text-foreground/80 mb-8">Oops! Page not found</p>
           <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
             <a href="/">Return to Home</a>
